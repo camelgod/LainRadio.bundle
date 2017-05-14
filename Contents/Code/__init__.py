@@ -1,5 +1,6 @@
 # Welcome!
 # Script created by god@e-grotto.faith
+# github.com/camelgod/LainRadio.bundle/
 # Version 0.2
 # - Added dynamic channel listings from json
 # - Fix error attempting to art the Trackobject
