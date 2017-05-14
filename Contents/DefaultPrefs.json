@@ -1,0 +1,8 @@
+[
+        {
+                "id":                   "json_url",
+                "label":                "LainRadio IceCast URL",
+                "type":         "text",
+                "default":      "https://lainon.life/radio/status-json.xsl"
+        }
+]
