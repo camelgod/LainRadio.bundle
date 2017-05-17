@@ -90,7 +90,7 @@ def CreateTrackObject(url, title, fmt, art, include_container=False, includeBand
 		key = Callback(CreateTrackObject, url=url, art=art, title=title, fmt=fmt, include_container=True),
 		rating_key = url,
 		title = title,
-		duration=999999999999,
+		duration=2147483640,
 		art = R(ART),
 		items = [
 			MediaObject(
@@ -100,7 +100,7 @@ def CreateTrackObject(url, title, fmt, art, include_container=False, includeBand
 				container = container,
 				audio_codec = audio_codec,
 				audio_channels = 2,
-				duration=999999999999
+				duration=2147483647
 			)
 		]
 	)
