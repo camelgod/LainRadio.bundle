@@ -1,9 +1,6 @@
 # Welcome!
 # Script created by god@e-grotto.faith
 # github.com/camelgod/LainRadio.bundle/
-# Version 0.2
-# - Added dynamic channel listings from json
-# - Fix error attempting to art the Trackobject
 
 # Get IceCast json content from URL specified in DefaultPrefs / Plex channel settings
 import json
@@ -68,7 +65,7 @@ def MainMenu():
 	channel_array = getLainChannels()
 	oc = ObjectContainer()
 	for x in channel_array:
-		oc.add(CreateTrackObject(url=x['listenurl'], art=R(ART), title=x['server_name'], fmt='mp3'))
+		oc.add(CreateTrackObject(url=x['listenurl'], art=R(ART), title=x['server_name']))
 
 	# Set background image for the menu listing all channels
 	oc.art = R(ART)
@@ -78,17 +75,9 @@ def MainMenu():
 
 ####################################################################################################
 @route('/music/lainradio/channel/{title}')
-def CreateTrackObject(url, title, fmt, art, include_container=False, includeBandwidths=None):
-
-	if fmt == 'mp3':
-		container = Container.MP3
-		audio_codec = AudioCodec.MP3
-	elif fmt == 'aac':
-		container = Container.MP4
-		audio_codec = AudioCodec.AAC
-
+def CreateTrackObject(url, title, art, include_container=False, includeBandwidths=None):
 	track_object = TrackObject(
-		key = Callback(CreateTrackObject, url=url, art=art, title=title, fmt=fmt, include_container=True),
+		key = Callback(CreateTrackObject, url=url, art=art, title=title, include_container=True),
 		rating_key = url,
 		title = title,
 		duration=2147483640,
@@ -96,10 +85,10 @@ def CreateTrackObject(url, title, fmt, art, include_container=False, includeBand
 		items = [
 			MediaObject(
 				parts = [
-					PartObject(key=Callback(PlayAudio, url=url, ext=fmt))
+					PartObject(key=Callback(PlayAudio, url=url, ext='mp3'))
 				],
-				container = container,
-				audio_codec = audio_codec,
+				container = Container.MP3, 
+				audio_codec = AudioCodec.MP3,
 				audio_channels = 2,
 				duration=2147483647
 			)
