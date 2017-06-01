@@ -77,6 +77,7 @@ def MainMenu():
 
 
 ####################################################################################################
+@route('/music/lainradio/channel/{title}')
 def CreateTrackObject(url, title, fmt, art, include_container=False, includeBandwidths=None):
 
 	if fmt == 'mp3':
@@ -111,5 +112,6 @@ def CreateTrackObject(url, title, fmt, art, include_container=False, includeBand
 		return track_object
 
 ####################################################################################################
+@route('/music/lainradio/play')
 def PlayAudio(url):
 	return Redirect(url)
