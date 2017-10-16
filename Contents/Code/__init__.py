@@ -22,14 +22,18 @@ def getLainChannels():
 	channel_array = []
 	for x in d['icestats']['source']:
 	    #Filter out .ogg channels as they are not needed.
-	    if x['server_name'].endswith('(mp3)'):
 		# Filter out (mp3) and capitalize channel name for pretty lookin' names
-		x['server_name'] = x['server_name'].capitalize()
-		x['server_name'] = x['server_name'][:len(x['server_name'])-len('(mp3)')]
-		channel_array.append(x)
+	    try:
+
+		if (x['server_name'].endswith('(mp3)')):
+                    x['server_name'] = x['server_name'].capitalize()
+                    x['server_name'] = x['server_name'][:len(x['server_name'])-len('(mp3)')]
+		    Log('Added Lain Channel: ' + x['server_name'])
+		    Log('URL: ' + x['listenurl'])
+                    channel_array.append(x)
+            except KeyError:
+		Log('Not a valid station')
 		# Log to <plexfolder>/Logs/com.plexapp.plugins.lainradio.log
-		Log('Added Lain Channel: ' + x['server_name'])
-		Log('URL: ' + x['listenurl'])
 
 	# Return the formated array to MainMenu()
 	return channel_array
@@ -66,14 +70,12 @@ def MainMenu():
 	oc = ObjectContainer()
 	for x in channel_array:
 		oc.add(CreateTrackObject(url=x['listenurl'], art=R(ART), title=x['server_name']))
-
 	# Set background image for the menu listing all channels
 	oc.art = R(ART)
-
 	return oc
 
-
 ####################################################################################################
+@indirect
 @route('/music/lainradio/channel/{title}')
 def CreateTrackObject(url, title, art, include_container=False, includeBandwidths=None):
 	track_object = TrackObject(
