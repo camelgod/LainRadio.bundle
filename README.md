@@ -1,3 +1,5 @@
+**Important! - Plex has changed alot regarding plugins. This is only tested for older versions with the old plugin api.**
+
 # LainRadio.bundle
 
 This is a Plex Media Server bundle for the lainon.life radio channel.
