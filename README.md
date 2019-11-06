@@ -8,8 +8,6 @@ This plugin adds a channel to your Plex server, gets a list of available sources
 
 _Tested on PS4, Web and Android._
 
-<img src="http://god.e-grotto.faith/downloads/channels.png" width="250px" height="200px">
-<img src="http://god.e-grotto.faith/downloads/channels2.png" width="250px" height="380px">
 
 
 **How do I install this?**
